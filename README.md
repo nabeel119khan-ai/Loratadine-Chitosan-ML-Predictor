@@ -1,92 +1,75 @@
-<div align="center">
+# 💊 Loratadine-Chitosan-ML-Predictor
 
-# 💊 ML Prediction of Loratadine Drug Release
-### Chitosan Hydrogel · Ethyl Cellulose Nanosponge · Microsponge Matrices
+**AI-Powered Prediction of Loratadine Drug Release from Advanced Polymer Matrices**
 
-[![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square&logo=python)](https://python.org)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0-EE4C2C?style=flat-square&logo=pytorch)](https://pytorch.org)
-[![Scikit-learn](https://img.shields.io/badge/Scikit--Learn-1.3-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Manuscript-Under%20Review-orange?style=flat-square)](.)
-
-</div>
+![Project Banner](https://github.com/nabeel119khan-ai/Loratadine-Chitosan-ML-Predictor/blob/main/Screenshot%202026-06-07%20154026.png)
 
 ---
 
-## 📌 Overview
+### 🚀 **Key Achievement**
+**SVR (RBF Kernel)** achieves **Test R² = 0.992** — beating the classical **Korsmeyer-Peppas model (1983)** by **~5× lower error**.
 
-This repository contains a **complete machine learning framework** for predicting cumulative drug release percentage of **Loratadine** from polymer-based controlled release matrices.
-
-Four ML models — SVR, Random Forest, Gradient Boosting, and a custom PyTorch Neural Network — were trained on **352 dissolution data points** unified from multiple published literature sources. All models were benchmarked against the classical **Korsmeyer-Peppas kinetic equation (1983)**.
-
-> **Key finding:** The best ML model achieves Test R² = 0.992, outperforming the Korsmeyer-Peppas classical model by ΔR² = 0.212 — validated by Wilcoxon signed-rank test (p < 0.05).
+This project proves that modern Machine Learning + smart chemistry features can significantly outperform 40-year-old equations in **controlled drug release** prediction.
 
 ---
 
-## 🏆 Results Summary
+### 📊 Results at a Glance
 
-| Model | Test R² | CV R² (±95% CI) | MAE (%) | RMSE (%) |
-|-------|---------|-----------------|---------|----------|
-| **SVR (RBF kernel)** | **0.992** | **0.989 ± 0.008** | **1.95** | **2.41** |
-| Gradient Boosting | 0.989 | 0.986 ± 0.009 | 2.10 | 2.65 |
-| PyTorch Neural Net | 0.985 | N/A | 2.40 | 3.01 |
-| Random Forest | 0.970 | 0.967 ± 0.011 | 3.20 | 4.10 |
-| **Korsmeyer-Peppas** *(classical baseline)* | 0.780 | — | 8.50 | 10.20 |
+| Model                    | Test R²   | MAE (%) | RMSE (%) |
+|--------------------------|-----------|---------|----------|
+| **SVR (RBF)**            | **0.992** | **1.95**| **2.41** |
+| Gradient Boosting        | 0.989     | 2.10    | 2.65     |
+| PyTorch Neural Network   | 0.985     | 2.40    | 3.01     |
+| Random Forest            | 0.970     | 3.20    | 4.10     |
+| **Korsmeyer-Peppas**     | 0.780     | 8.50    | 10.20    |
 
-**ML significantly outperforms the 40-year-old classical equation ✅**
-
----
-
-## 🗂️ Dataset
-
-| Property | Value |
-|----------|-------|
-| **Total data points** | 352 dissolution observations |
-| **Matrix systems** | Chitosan hydrogel, Ethyl Cellulose nanosponge, Microsponge |
-| **Source** | Multi-paper literature extraction from published dissolution studies |
-| **Drug** | Loratadine (MW = 382.88 g/mol, LogP = 5.1, pKa = 4.97) |
-| **Target variable** | Cumulative drug release (%) |
-| **Time range** | 0.5 – 24 hours |
-| **pH conditions** | 1.2, 4.5, 6.8, 7.4 |
+**352 real experimental data points** from multiple literature sources.
 
 ---
 
-## ⚗️ Feature Engineering — 3 Domain-Informed Features
+### ⚗️ Smart Domain-Informed Features
+- **Polymer-to-Drug Ratio** (Higuchi matrix theory)
+- **Time × pH Interaction** (Peppas-Sahlin dynamics)
+- **pH Deviation from Chitosan pKa (~6.5)**
 
-### Feature A — Polymer-to-Drug Ratio
-```python
-polymer_to_drug_ratio = (chitosan_mg + ethyl_cellulose_mg + pva_mg) / (loratadine_mg + 0.001)
-```
-**Basis:** Higuchi (1963) matrix diffusion. Higher ratio = denser polymer network = reduced diffusion coefficient = slower release.
-
-### Feature B — Time × pH Interaction
-```python
-time_ph_interaction = time_hours × ph
-```
-**Basis:** Chitosan pKa ≈ 6.5. Below pKa, protonation drives swelling and accelerated diffusion. This effect scales with time — multiplicative term captures the coupling (Peppas & Sahlin, 1989).
-
-### Feature C — pH Deviation from Chitosan pKa
-```python
-ph_deviation_from_pka = abs(ph - 6.5)
-```
-**Basis:** Further pH deviates from pKa in either direction, the more extreme the ionisation-driven swelling response.
-
-**All 3 engineered features ranked in the top 5 SHAP importance scores ✅**
+SHAP analysis confirms the model independently rediscovered real polymer physics.
 
 ---
 
-## 🧠 SHAP Feature Importance
+### Why This Project Matters
+Traditional pharmaceutical models are limited. This work shows how **AI + Chemistry knowledge** can accelerate formulation development, reduce experiments, and improve controlled-release drug design.
 
-| Rank | Feature | Mean SHAP | Pharmaceutical Basis |
-|------|---------|-----------|----------------------|
-| 1 | time_hours | 0.92 | Korsmeyer-Peppas kinetics |
-| 2 | time_ph_interaction | 0.71 | Peppas-Sahlin diffusion-relaxation coupling |
-| 3 | polymer_to_drug_ratio | 0.48 | Higuchi matrix diffusion |
-| 4 | ph | 0.31 | Chitosan polyelectrolyte switching at pKa 6.5 |
-| 5 | ph_deviation_from_pka | 0.22 | Ionisation state → swelling magnitude |
-
-> The AI independently rediscovered 40 years of pharmaceutical physics from data alone.
+**Perfect for researchers in:**
+- Drug Delivery
+- Chemoinformatics
+- Green Chemistry
+- Pharmaceutical Sciences
 
 ---
 
-## 📁 Repository Structure
+### 📁 What's Inside
+- `ml_paper_nabeel_FINAL.ipynb` → Full reproducible notebook
+- Complete data processing + modeling pipeline
+- SHAP explanations + performance plots
+- All screenshots of results
+
+---
+
+**👉 Open the Notebook:** [ml_paper_nabeel_FINAL.ipynb](ml_paper_nabeel_FINAL.ipynb)
+
+---
+
+**⭐ If you find this useful, please star the repo!**  
+It helps other researchers discover this work.
+
+---
+
+**Made by**  
+**Nabeel Khan**  
+5th Semester BS Chemistry Student  
+University of Sargodha, Pakistan  
+Passionate about **AI for Pharmaceutical Sciences**
+
+---
+
+**Topics:** `machine-learning` `drug-delivery` `chemoinformatics` `controlled-release` `pharmaceutical-sciences` `shap` `pytorch` `green-chemistry`
