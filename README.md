@@ -1,20 +1,29 @@
 # 💊 Loratadine-Chitosan-ML-Predictor
 
-![Project Banner](https://github.com/nabeel119khan-ai/Loratadine-Chitosan-ML-Predictor/blob/main/Screenshot%202026-06-07%20154026.png)
+![Project Banner](https://github.com/nabeel119khan-ai/Loratadine-Chitosan-ML-Predictor/blob/main/Screenshot%202026-06-07%20154112.png)
 
 ---
 
 **🚀 AI-Powered Drug Release Prediction Framework**
 
-**Predicting cumulative release of Loratadine from**  
+**Built with**  
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-FF9F00?style=for-the-badge&logo=scikit-learn&logoColor=white)
+**Jupyter Notebook** • **SHAP** • **Pandas** • **Matplotlib**
+
+---
+
+**Predicting cumulative Loratadine release (%) from**  
 **Chitosan Hydrogel • Ethyl Cellulose Nanosponge • Microsponge Matrices**
 
 ---
 
 ### 🏆 **Major Breakthrough**
+
 **SVR (RBF Kernel)** achieves **Test R² = 0.992** — **~5× better** than the classical **Korsmeyer-Peppas model (1983)** (R² = 0.780)
 
-Trained on **352 real experimental dissolution data points** from literature.
+Trained on **352 real experimental dissolution data points** collected from multiple scientific papers.
 
 ---
 
@@ -28,37 +37,34 @@ Trained on **352 real experimental dissolution data points** from literature.
 | Random Forest              | 0.970     | 3.20    | 4.10     |
 | **Korsmeyer-Peppas (1983)**| 0.780     | 8.50    | 10.20    |
 
-**ML models significantly outperform the 40-year-old equation ✅**
-
 ---
 
-### ⚗️ Smart Domain-Informed Features
+### ⚙️ Smart Domain-Informed Features
 - **Polymer-to-Drug Ratio** (Higuchi matrix theory)
 - **Time × pH Interaction** (Peppas-Sahlin dynamics)
 - **pH Deviation from Chitosan pKa (~6.5)**
 
-**SHAP analysis** shows the model naturally rediscovered real polymer physics and pharmaceutical principles.
+**SHAP Explainability** confirms the model rediscovered real polymer physics.
 
 ---
 
 ### Why This Project Matters
-This work demonstrates how **Chemistry + Modern AI** can accelerate formulation development, reduce costly lab experiments, and improve controlled drug release systems.
-
-**Ideal for researchers in** Drug Delivery, Chemoinformatics, Green Chemistry, and Pharmaceutical Sciences.
+This project bridges **traditional pharmaceutical chemistry** with **modern machine learning** to make controlled drug release formulation faster, cheaper, and more predictive.
 
 ---
 
 ### 📁 What's Inside
-- `ml_paper_nabeel_FINAL.ipynb` — Complete reproducible Jupyter Notebook
-- Full data processing, modeling, and SHAP explainability
-- All result plots and screenshots
+- `ml_paper_nabeel_FINAL.ipynb` → Full reproducible Jupyter Notebook
+- Complete data unification + modeling pipeline
+- PyTorch Neural Network implementation
+- All SHAP plots and performance visuals
 
-**👉 Open Notebook:** [ml_paper_nabeel_FINAL.ipynb](ml_paper_nabeel_FINAL.ipynb)
+**👉 [Open Full Notebook](ml_paper_nabeel_FINAL.ipynb)**
 
 ---
 
-**⭐ Star this repo if you're working in Pharma AI or Drug Delivery!**  
-It helps other researchers find this work.
+**⭐ If you like this project, please star it!**  
+Helps other researchers and students discover it.
 
 ---
 
@@ -66,8 +72,5 @@ It helps other researchers find this work.
 **Nabeel Khan**  
 5th Semester BS Chemistry Student  
 University of Sargodha, Pakistan  
-Passionate about **AI for Pharmaceutical Sciences**
 
----
-
-**Topics:** `machine-learning` `drug-delivery` `chemoinformatics` `controlled-release` `pharmaceutical-sciences` `shap` `pytorch` `green-chemistry`
+**Passionate about AI for Pharmaceutical Sciences & Green Chemistry**
